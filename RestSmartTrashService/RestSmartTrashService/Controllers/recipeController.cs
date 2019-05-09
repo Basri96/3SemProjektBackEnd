@@ -1,37 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestSmartTrashService.Model;
 
 namespace RestSmartTrashService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class smartBioTrashcanController : ControllerBase
+    public class recipeController : ControllerBase
     {
-        // GET: api/smartBioTrashcan
+        string connectionString = "Server=tcp:projektgruppe.database.windows.net,1433;Initial Catalog=smartbiotrashcanDB;Persist Security Info=False;User ID=projektGruppe;Password=1234ABcd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        // GET: api/recipe
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/smartBioTrashcan/5
+        // GET: api/recipe/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/smartBioTrashcan
+        // POST: api/recipe
         [HttpPost]
-        public void Post([FromBody] string value)
+        public int Post([FromBody] recipe r)
         {
+            return 1;
         }
 
-        // PUT: api/smartBioTrashcan/5
+        // PUT: api/recipe/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {

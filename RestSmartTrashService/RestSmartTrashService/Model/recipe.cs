@@ -7,10 +7,10 @@ namespace RestSmartTrashService.Model
 {
     public class recipe
     {
-        int id { get; set; }
-        DateTime date { get; set; }
-        string recipeDescription { get; set; }
-        string recipeTitle { get; set; }
+        public int id { get; set; }
+        public DateTime date { get; set; }
+        public string recipeDescription { get; set; }
+        public string recipeTitle { get; set; }
         
         public recipe(int id, DateTime date, string recipeDescription, string recipeTitle)
         {
