@@ -61,7 +61,7 @@ namespace RestSmartTrashService.Controllers
         {
             if (id == 1)
             {
-                const string selectString = "select id, dato, weight from weight order by id";
+                const string selectString = "SELECT top 1 * FROM Weight order by id DESC";
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
                     databaseConnection.Open();
@@ -82,7 +82,7 @@ namespace RestSmartTrashService.Controllers
             }
             if (id == 2)
             {
-                const string selectString = "select id, date, weight from weight order by id";
+                const string selectString = "SELECT top 7 * FROM Weight order by id DESC";
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
                     databaseConnection.Open();
@@ -104,7 +104,7 @@ namespace RestSmartTrashService.Controllers
             }
             if (id == 3)
             {
-                const string selectString = "select id, date, weight from weight order by id";
+                const string selectString = "SELECT top 30 * FROM Weight order by id DESC";
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
                     databaseConnection.Open();
@@ -125,7 +125,7 @@ namespace RestSmartTrashService.Controllers
             }
             if(id == 4)
             {
-                const string selectString = "select id, date, weight from weight order by id";
+                const string selectString = "SELECT top 365 * FROM Weight order by id DESC";
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
                     databaseConnection.Open();
