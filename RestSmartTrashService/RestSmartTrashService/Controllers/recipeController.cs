@@ -22,7 +22,7 @@ namespace RestSmartTrashService.Controllers
         }
 
         // GET: api/recipe/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "Get2")]
         public string Get(int id)
         {
             return "value";

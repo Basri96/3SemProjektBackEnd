@@ -18,33 +18,33 @@ namespace RestSmartTrashService.Controllers
 
         // GET: api/weight
         [HttpGet]
-        public IEnumerable<weight> GetAllWeights()
+        public void GetAllWeights()
         {
-            const string selectString = "select id, date, weight from weight order by id";
-            using (SqlConnection databaseConnection = new SqlConnection(connectionString))
-            {
-                databaseConnection.Open();
-                using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
-                {
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        List<weight> weightList = new List<weight>();
-                        while (reader.Read())
-                        {
-                            weight weight = ReadWeight(reader);
-                            weightList.Add(weight);
-                        }
-                        return weightList;
-                    }
-                }
-            }
+            //const string selectString = "select id, date, weight from weight order by id";
+            //using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+            //{
+            //    databaseConnection.Open();
+            //    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+            //    {
+            //        using (SqlDataReader reader = selectCommand.ExecuteReader())
+            //        {
+            //            List<weight> weightList = new List<weight>();
+            //            while (reader.Read())
+            //            {
+            //                weight weight = ReadWeight(reader);
+            //                weightList.Add(weight);
+            //            }
+            //            return weightList;
+            //        }
+            //    }
+            //}
         }
 
         private static weight ReadWeight(IDataRecord reader)
         {
             int id = reader.GetInt32(0);
-            DateTime date = reader.GetDateTime(1);
-            float weightMeasure = reader.GetFloat(2);
+            string date = reader.GetString(1);
+            string weightMeasure = reader.GetString(2);
 
             weight weight = new weight
             {
@@ -56,17 +56,106 @@ namespace RestSmartTrashService.Controllers
         }
 
         // GET: api/weight/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "Get1")]
+        public IEnumerable<weight> Get(int id)
         {
-            return "value";
+            if (id == 1)
+            {
+                const string selectString = "select id, date, weight from weight order by id";
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            List<weight> weightList = new List<weight>();
+                            while (reader.Read())
+                            {
+                                weight weight = ReadWeight(reader);
+                                weightList.Add(weight);
+                            }
+                            return weightList;
+                        }
+                    }
+                }
+            }
+            if (id == 2)
+            {
+                const string selectString = "select id, date, weight from weight order by id";
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            List<weight> weightList = new List<weight>();
+                            while (reader.Read())
+                            {
+                                weight weight = ReadWeight(reader);
+                                weightList.Add(weight);
+                            }
+                            return weightList;
+                        }
+                    }
+                }
+
+            }
+            if (id == 3)
+            {
+                const string selectString = "select id, date, weight from weight order by id";
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            List<weight> weightList = new List<weight>();
+                            while (reader.Read())
+                            {
+                                weight weight = ReadWeight(reader);
+                                weightList.Add(weight);
+                            }
+                            return weightList;
+                        }
+                    }
+                }
+            }
+            if(id == 4)
+            {
+                const string selectString = "select id, date, weight from weight order by id";
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            List<weight> weightList = new List<weight>();
+                            while (reader.Read())
+                            {
+                                weight weight = ReadWeight(reader);
+                                weightList.Add(weight);
+                            }
+                            return weightList;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                List<weight> weightList = new List<weight>();
+                return weightList;
+            }
         }
 
         // POST: api/weight
         [HttpPost]
         public int Post([FromBody] weight w)
         {
-            const string postString = "INSERT INTO weight(date, weight) VALUES (@date,@weight)";
+            const string postString = "INSERT INTO weight(date, weight) VALUES (@date, @weight)";
             using (SqlConnection databaseConnection = new SqlConnection(connectionString))
             {
                 databaseConnection.Open();

@@ -8,10 +8,10 @@ namespace RestSmartTrashService.Model
     public class weight
     {
         public int id { get; set; }
-        public DateTime date { get; set; }
-        public float weightMeasure { get; set; }
+        public string date { get; set; }
+        public string weightMeasure { get; set; }
 
-        public weight(DateTime date, float weight)
+        public weight(string date, string weight)
         {
             this.date = date;
             this.weightMeasure = weight;
