@@ -43,13 +43,13 @@ namespace RestSmartTrashService.Controllers
         private static weight ReadWeight(IDataRecord reader)
         {
             int id = reader.GetInt32(0);
-            string date = reader.GetString(1);
+            string dato = reader.GetString(1);
             string weightMeasure = reader.GetString(2);
 
             weight weight = new weight
             {
                 id = id,
-                date = date,
+                dato = dato,
                 weightMeasure= weightMeasure
             };
             return weight;
@@ -61,7 +61,7 @@ namespace RestSmartTrashService.Controllers
         {
             if (id == 1)
             {
-                const string selectString = "select id, date, weight from weight order by id";
+                const string selectString = "select id, dato, weight from weight order by id";
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
                     databaseConnection.Open();
@@ -155,13 +155,13 @@ namespace RestSmartTrashService.Controllers
         [HttpPost]
         public int Post([FromBody] weight w)
         {
-            const string postString = "INSERT INTO weight(date, weight) VALUES (@date, @weight)";
+            const string postString = "INSERT INTO weight(dato, weight) VALUES (@dato, @weight)";
             using (SqlConnection databaseConnection = new SqlConnection(connectionString))
             {
                 databaseConnection.Open();
                 using (SqlCommand insertCommand = new SqlCommand(postString, databaseConnection))
                 {
-                    insertCommand.Parameters.AddWithValue("@date", w.date);
+                    insertCommand.Parameters.AddWithValue("@dato", w.dato);
                     insertCommand.Parameters.AddWithValue("@weight", w.weightMeasure);
                     int rowsAffected = insertCommand.ExecuteNonQuery();
 
