@@ -72,5 +72,23 @@ namespace WebserviceUnittest
 
 
         }
+
+        [TestMethod]
+        public void WeightReaderTestForgåendeUge()
+        {
+            // arrange
+            IList<weight> forgåendeUge = RestSmartTrashService.Controllers.weightController.GetWeightAsync(5).Result;
+            IList<weight> nuværendeUge = RestSmartTrashService.Controllers.weightController.GetWeightAsync(2).Result;
+            
+            // act
+            weight dage1 = nuværendeUge[0];
+            weight forDag1 = forgåendeUge[0];
+            
+            // assert
+            Assert.AreEqual(dage1.id, (forDag1.id + 13));
+           
+
+
+        }
     }
 }

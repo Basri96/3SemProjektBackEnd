@@ -160,6 +160,28 @@ namespace RestSmartTrashService.Controllers
                     }
                 }
             }
+
+            if (id == 5)
+            {
+                const string selectString = "SELECT top 7 * FROM  ( SELECT TOP 14 * FROM Weight ORDER BY ID desc) z ORDER BY ID ";
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            List<weight> weightList = new List<weight>();
+                            while (reader.Read())
+                            {
+                                weight weight = ReadWeight(reader);
+                                weightList.Add(weight);
+                            }
+                            return weightList;
+                        }
+                    }
+                }
+            }
             else
             {
                 List<weight> weightList = new List<weight>();
