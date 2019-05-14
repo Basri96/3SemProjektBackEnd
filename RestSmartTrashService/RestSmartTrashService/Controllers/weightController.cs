@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RestSmartTrashService.Model;
 
 namespace RestSmartTrashService.Controllers
@@ -14,6 +17,19 @@ namespace RestSmartTrashService.Controllers
     [ApiController]
     public class weightController : ControllerBase
     {
+        private static string weightUri = "https://restsmarttrashservice.azurewebsites.net/api/weight";
+
+        public static async Task<IList<weight>> GetWeightAsync(int id)
+        {
+            string requestUri = weightUri + "/" + id;
+            using (HttpClient client = new HttpClient())
+            {
+                string content = await client.GetStringAsync(requestUri);
+                IList<weight> c = JsonConvert.DeserializeObject<IList<weight>>(content);
+                
+                return c;
+            }
+        }
         string connectionString = "Server=tcp:projektgruppe.database.windows.net,1433;Initial Catalog=smartbiotrashcanDB;Persist Security Info=False;User ID=projektGruppe;Password=1234ABcd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         // GET: api/weight
