@@ -44,7 +44,7 @@ namespace WebserviceUnittest
 
         }
         [TestMethod]
-        public void WeightReaderTestMåned()
+        public void WeightReaderTestMonth()
         {
             // arrange
             IList<weight> weightListe = RestSmartTrashService.Controllers.weightController.GetWeightAsync(3).Result;
@@ -59,7 +59,7 @@ namespace WebserviceUnittest
         }
 
         [TestMethod]
-        public void WeightReaderTestÅr()
+        public void WeightReaderTestYear()
         {
             // arrange
             IList<weight> weightListe = RestSmartTrashService.Controllers.weightController.GetWeightAsync(4).Result;
@@ -74,15 +74,15 @@ namespace WebserviceUnittest
         }
 
         [TestMethod]
-        public void WeightReaderTestForgåendeUge()
+        public void WeightReaderTestLastWeek()
         {
             // arrange
-            IList<weight> forgåendeUge = RestSmartTrashService.Controllers.weightController.GetWeightAsync(5).Result;
-            IList<weight> nuværendeUge = RestSmartTrashService.Controllers.weightController.GetWeightAsync(2).Result;
+            IList<weight> lastWeek = RestSmartTrashService.Controllers.weightController.GetWeightAsync(5).Result;
+            IList<weight> currentWeek = RestSmartTrashService.Controllers.weightController.GetWeightAsync(2).Result;
             
             // act
-            weight dage1 = nuværendeUge[0];
-            weight forDag1 = forgåendeUge[0];
+            weight dage1 = currentWeek[0];
+            weight forDag1 = lastWeek[0];
             
             // assert
             Assert.AreEqual(dage1.id, (forDag1.id + 13));
