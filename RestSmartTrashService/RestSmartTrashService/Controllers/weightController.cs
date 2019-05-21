@@ -64,7 +64,7 @@ namespace RestSmartTrashService.Controllers
 
             weight weight = new weight
             {
-                id = id,
+                
                 dato = dato,
                 weightMeasure= weightMeasure
             };

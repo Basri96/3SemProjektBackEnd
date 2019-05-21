@@ -38,7 +38,7 @@ namespace RestSmartTrashService.Controllers
         
             recipe1 recipe3 = new recipe1
             {
-                id = id,
+                
                 dato = dato,
                 recipe = recipe,
             };
@@ -74,7 +74,7 @@ namespace RestSmartTrashService.Controllers
         [HttpPost]
         public int Post([FromBody] recipe1 r)
         {
-            const string postString = "INSERT INTO recipe(dato, recipe ) VALUES (@dato, @recipe";
+            const string postString = "INSERT INTO recipe(dato, recipe ) VALUES (@dato, @recipe)";
             using (SqlConnection databaseConnection = new SqlConnection(connectionString))
             {
                 databaseConnection.Open();

@@ -7,14 +7,14 @@ namespace RestSmartTrashService.Model
 {
     public class recipe1
     {
-        public int id { get; set; }
+        //public int id { get; set; }
         public string dato { get; set; }
         public string recipe { get; set; }
     
         
-        public recipe1(int id, string dato, string recipe)
+        public recipe1(string dato, string recipe)
         {
-            this.id = id;
+            //this.id = id;
             this.dato = dato;
             this.recipe = recipe;
            
