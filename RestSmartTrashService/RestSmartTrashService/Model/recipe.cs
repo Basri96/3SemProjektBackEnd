@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 
 namespace RestSmartTrashService.Model
 {
-    public class recipe
+    public class recipe1
     {
         public int id { get; set; }
         public string dato { get; set; }
-        public string recipeDescription { get; set; }
-        public string recipeTitle { get; set; }
+        public string recipe { get; set; }
+    
         
-        public recipe(int id, string dato, string recipeDescription, string recipeTitle)
+        public recipe1(int id, string dato, string recipe)
         {
             this.id = id;
             this.dato = dato;
-            this.recipeDescription = recipeDescription;
-            this.recipeTitle = recipeTitle;
+            this.recipe = recipe;
+           
         }
 
-        public recipe() { }
+        public recipe1() { }
     }
 }

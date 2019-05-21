@@ -15,13 +15,13 @@ namespace RestSmartTrashService.Controllers
     {
         private static string recipeUri = "https://restsmarttrashservice.azurewebsites.net/api/recipe";
 
-        public static async Task<IList<recipe>> GetRecipeAsync(int id)
+        public static async Task<IList<recipe1>> GetRecipeAsync(int id)
         {
             string requestUri = recipeUri + "/" + id;
             using (HttpClient client = new HttpClient())
             {
                 string content = await client.GetStringAsync(requestUri);
-                IList<recipe> c = JsonConvert.DeserializeObject<IList<recipe>>(content);
+                IList<recipe1> c = JsonConvert.DeserializeObject<IList<recipe1>>(content);
 
                 return c;
             }
@@ -29,27 +29,26 @@ namespace RestSmartTrashService.Controllers
         string connectionString = "Server=tcp:projektgruppe.database.windows.net,1433;Initial Catalog=smartbiotrashcanDB;Persist Security Info=False;User ID=projektGruppe;Password=1234ABcd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
        
        
-        private static recipe ReadRecipe(IDataRecord reader)
+        private static recipe1 ReadRecipe(IDataRecord reader)
         {
             int id = reader.GetInt32(0);
             string dato = reader.GetString(1);
-            string recipeDescription = reader.GetString(2);
-            string recipeTitle = reader.GetString(3);
+            string recipe = reader.GetString(2);
+           
         
-            recipe recipe = new recipe
+            recipe1 recipe3 = new recipe1
             {
                 id = id,
                 dato = dato,
-                recipeDescription = recipeDescription,
-                recipeTitle = recipeTitle
+                recipe = recipe,
             };
-                return recipe;
-            
+            return recipe3;
+
         }
 
         // GET: api/recipe/5
         [HttpGet("{id}", Name = "Get2")]
-        public IEnumerable<recipe> Get(int id)
+        public IEnumerable<recipe1> Get(int id)
         {
             const string selectString = "SELECT * FROM Recipe order by id DESC";
             using (SqlConnection databaseConnection = new SqlConnection(connectionString))
@@ -59,10 +58,10 @@ namespace RestSmartTrashService.Controllers
                 {
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        List<recipe> recipeList = new List<recipe>();
+                        List<recipe1> recipeList = new List<recipe1>();
                         while (reader.Read())
                         {
-                            recipe weight = ReadRecipe(reader);
+                            recipe1 weight = ReadRecipe(reader);
                             recipeList.Add(weight);
                         }
                         return recipeList;
@@ -73,17 +72,17 @@ namespace RestSmartTrashService.Controllers
 
         // POST: api/recipe
         [HttpPost]
-        public int Post([FromBody] recipe r)
+        public int Post([FromBody] recipe1 r)
         {
-            const string postString = "INSERT INTO recipe(dato, recipeDescription, recipeTitle ) VALUES (@dato, @recipe, @recipeDescription ,@recipeTitle)";
+            const string postString = "INSERT INTO recipe(dato, recipe ) VALUES (@dato, @recipe";
             using (SqlConnection databaseConnection = new SqlConnection(connectionString))
             {
                 databaseConnection.Open();
                 using (SqlCommand insertCommand = new SqlCommand(postString, databaseConnection))
                 {
                     insertCommand.Parameters.AddWithValue("@dato", r.dato);
-                    insertCommand.Parameters.AddWithValue("@recipeDescription", r.recipeDescription);
-                    insertCommand.Parameters.AddWithValue("@recipeTitle", r.recipeTitle);
+                    insertCommand.Parameters.AddWithValue("@recipe", r.recipe);
+                   
                     int rowsAffected = insertCommand.ExecuteNonQuery();
 
                     return rowsAffected;
