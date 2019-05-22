@@ -45,10 +45,9 @@ namespace RestSmartTrashService.Controllers
             return recipe3;
 
         }
-
-        // GET: api/recipe/5
-        [HttpGet("{id}", Name = "Get2")]
-        public IEnumerable<recipe1> Get(int id)
+        // GET: api/recipe
+        [HttpGet]
+        public IEnumerable<recipe1> GetAllRecipe()
         {
             const string selectString = "SELECT * FROM Recipe order by id DESC";
             using (SqlConnection databaseConnection = new SqlConnection(connectionString))
@@ -68,6 +67,30 @@ namespace RestSmartTrashService.Controllers
                     }
                 }
             }
+        }
+
+        // GET: api/recipe/5
+        [HttpGet("{id}", Name = "Get2")]
+        public void Get(int id)
+        {
+            //const string selectString = "SELECT * FROM Recipe order by id DESC";
+            //using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+            //{
+            //    databaseConnection.Open();
+            //    using (SqlCommand selectCommand = new SqlCommand(selectString, databaseConnection))
+            //    {
+            //        using (SqlDataReader reader = selectCommand.ExecuteReader())
+            //        {
+            //            List<recipe1> recipeList = new List<recipe1>();
+            //            while (reader.Read())
+            //            {
+            //                recipe1 weight = ReadRecipe(reader);
+            //                recipeList.Add(weight);
+            //            }
+            //            return recipeList;
+            //        }
+            //    }
+            //}
         }
 
         // POST: api/recipe
