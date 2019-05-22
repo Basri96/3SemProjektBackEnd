@@ -15,6 +15,17 @@ namespace RestSmartTrashService.Controllers
     {
         private static string recipeUri = "https://restsmarttrashservice.azurewebsites.net/api/recipe";
 
+        public static async Task<IList<recipe1>> GetAllRecipeAsync()
+        {
+            string requestUri = recipeUri;
+            using (HttpClient client = new HttpClient())
+            {
+                string content = await client.GetStringAsync(requestUri);
+                IList<recipe1> c = JsonConvert.DeserializeObject<IList<recipe1>>(content);
+
+                return c;
+            }
+        }
         public static async Task<IList<recipe1>> GetRecipeAsync(int id)
         {
             string requestUri = recipeUri + "/" + id;

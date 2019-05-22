@@ -2,6 +2,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -77,8 +79,8 @@ namespace WebserviceUnittest
         public void WeightReaderTestLastWeek()
         {
             // arrange
-            IList<weight> lastWeek = RestSmartTrashService.Controllers.weightController.GetWeightAsync(5).Result;
-            IList<weight> currentWeek = RestSmartTrashService.Controllers.weightController.GetWeightAsync(2).Result;
+            IList<weight> lastWeek = weightController.GetWeightAsync(5).Result;
+            IList<weight> currentWeek = weightController.GetWeightAsync(2).Result;
             
             // act
             weight dage1 = currentWeek[0];
@@ -87,6 +89,22 @@ namespace WebserviceUnittest
             // assert
             Assert.AreEqual(dage1.id, (forDag1.id + 13));
            
+
+
+        }
+
+        [TestMethod]
+        public void RecipeListTest()
+        {
+            // arrange
+            IList<recipe1> recipeListe = recipeController.GetAllRecipeAsync().Result;
+
+            // act
+            int length = recipeListe.Count;
+            // assert
+
+            Assert.IsTrue(length > 1);
+
 
 
         }

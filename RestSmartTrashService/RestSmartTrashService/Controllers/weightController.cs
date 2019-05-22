@@ -19,6 +19,7 @@ namespace RestSmartTrashService.Controllers
     {
         private static string weightUri = "https://restsmarttrashservice.azurewebsites.net/api/weight";
 
+        
         public static async Task<IList<weight>> GetWeightAsync(int id)
         {
             string requestUri = weightUri + "/" + id;
@@ -55,7 +56,8 @@ namespace RestSmartTrashService.Controllers
             //    }
             //}
         }
-
+        
+        // Læser data fra konsol applikation FELIX KIG HER HUSK
         private static weight ReadWeight(IDataRecord reader)
         {
             int id = reader.GetInt32(0);
@@ -64,13 +66,14 @@ namespace RestSmartTrashService.Controllers
 
             weight weight = new weight
             {
-                
+                id = id,
                 dato = dato,
-                weightMeasure= weightMeasure
+                weightMeasure = weightMeasure
             };
             return weight;
         }
 
+        // Vi har opdelt kaldende i 5 forskellige id'er for at gøre det simpelt, 
         // GET: api/weight/5
         [HttpGet("{id}", Name = "Get1")]
         public IEnumerable<weight> Get(int id)

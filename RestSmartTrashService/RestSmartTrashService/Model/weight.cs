@@ -7,12 +7,13 @@ namespace RestSmartTrashService.Model
 {
     public class weight
     {
-        //public int id { get; set; }
+        public int id { get; set; }
         public string dato { get; set; }
         public string weightMeasure { get; set; }
 
         public weight(string dato, string weight)
         {
+            
             this.dato = dato;
             this.weightMeasure = weight;
         }
