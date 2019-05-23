@@ -57,7 +57,7 @@ namespace RestSmartTrashService.Controllers
             //}
         }
         
-        // Læser data fra konsol applikation FELIX KIG HER HUSK
+        // hjælpe funktion som vi anvender i Get metoder, den indlæser data fra database(IDataRecord) og opretter et weight objekter med det indlæste data
         private static weight ReadWeight(IDataRecord reader)
         {
             int id = reader.GetInt32(0);
@@ -88,10 +88,10 @@ namespace RestSmartTrashService.Controllers
                     {
                         using (SqlDataReader reader = selectCommand.ExecuteReader())
                         {
-                            List<weight> weightList = new List<weight>();
+                            List<weight> weightList = new List<weight>();         
                             while (reader.Read())
                             {
-                                weight weight = ReadWeight(reader);
+                                weight weight = ReadWeight(reader);         //anvender ovenstånde hjælpe funktionen fra linje 64
                                 weightList.Add(weight);
                             }
                             return weightList;
